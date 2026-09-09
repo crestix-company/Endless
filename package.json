@@ -9,6 +9,7 @@
     "dev": "vinext dev",
     "build": "vinext build",
     "build:pages": "node scripts/build-pages.mjs",
+    "build:cloudflare-pages": "node scripts/build-pages.mjs cloudflare",
     "verify:pages": "node scripts/verify-pages-build.mjs",
     "typecheck": "tsc --noEmit",
     "start": "wrangler dev --config dist/server/wrangler.json",

@@ -36,3 +36,19 @@ Vinext / React / Cloudflare Workers。Sitesの公開設定は `.openai/hosting.j
 - ビルド時に `/Endless` を画像・CSS・JavaScript・ページリンクへ適用。各ページのcanonicalも公開先に切り替える。
 - ローカルとSitesは従来の `npm run dev` / `npm run build` を利用する。
 - トップの旧 `#menu` / `#access` リンクは、それぞれ新しいページへ案内する。
+
+### Cloudflare Pages
+
+GitHub Pagesとは配信するURLの階層が異なるため、専用ビルドを使用する。
+
+- プロジェクト： `endless`
+- 公開先： https://endless-633.pages.dev/
+- Gitリポジトリ： `crestix-company/Endless`、本番ブランチ： `main`
+- フレームワークプリセット： `None`
+- ビルドコマンド： `npm run build:cloudflare-pages`
+- ビルド出力ディレクトリ： `dist/client`
+- ルートディレクトリ： 空欄（リポジトリ直下）
+
+上記をCloudflareのSettings → Buildsで設定し、最新のコミットを再デプロイする。ソース直下・`public`・`dist/server` は公開フォルダに指定しない。通常の `npm run build` はSites用Workerビルドのため、Cloudflare Pagesには使用しない。
+
+専用ビルドはルート、`/menu/`、`/salon/` のHTMLを生成する。画像とJS/CSSはルート起点になり、GitHub専用の `/Endless` を含めない。公開前に全3ページ、写真、書体、canonical、開発用ファイルの混入を検査し、欠落があればビルドを失敗させる。

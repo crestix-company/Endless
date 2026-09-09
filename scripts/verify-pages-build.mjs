@@ -3,8 +3,9 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve('dist/client');
-const prefix = '/Endless';
-const origin = 'https://crestix-company.github.io';
+const prefix = process.env.NEXT_PUBLIC_BASE_PATH ?? '/Endless';
+const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://crestix-company.github.io/Endless/');
+const origin = siteUrl.origin;
 const routes = [
   ['/', '髪を整え、'],
   ['/menu/', 'メニュー・料金'],
@@ -40,6 +41,10 @@ for (const [route, marker] of routes) {
   assert(html.includes(`href="${url}"`), `Missing canonical at ${route}`);
   assert(!html.includes('s-nishita.chatgpt.site'), `Preview URL leaked into ${route}`);
   assert(!html.includes('nishitasho.github.io'), `Previous repository URL leaked into ${route}`);
+  if (!prefix) {
+    assert(!html.includes('/Endless/'), `GitHub project prefix leaked into ${route}`);
+    assert(!html.includes('crestix-company.github.io'), `Wrong canonical host at ${route}`);
+  }
   for (const [, value] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     if (/^(#|https?:|tel:|mailto:|data:)/.test(value)) continue;
     assert(value.startsWith(`${prefix}/`), `Unprefixed link in ${route}: ${value}`);
@@ -55,4 +60,7 @@ for (const name of ['interior-restored.webp', 'shaving-restored.webp', 'style-re
 }
 assert(existsSync(path.join(root, '.nojekyll')), 'Missing .nojekyll');
 assert(!existsSync(path.join(root, 'wrangler.json')), 'Worker config must not be published');
-console.log(`GitHub Pages artifact passed (${visited.size} linked files, ${readdirSync(path.join(root, 'images')).length} photos).`);
+for (const file of ['package.json', 'package-lock.json', 'app', 'components', 'scripts', 'server', '_worker.js']) {
+  assert(!existsSync(path.join(root, file)), `Non-public source or Worker output included: ${file}`);
+}
+console.log(`Static artifact for ${siteUrl.href} passed (${visited.size} linked files, ${readdirSync(path.join(root, 'images')).length} photos).`);

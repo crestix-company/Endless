@@ -7,7 +7,7 @@ import { startProdServer } from '../node_modules/vinext/dist/server/prod-server.
 // routes when basePath is configured. Render our three public, data-free pages
 // at their actual prefixed URLs, keeping the production HTML + hydration data.
 // This version-pinned adapter can go when upstream exports basePath correctly.
-const prefix = '/Endless';
+const prefix = process.env.NEXT_PUBLIC_BASE_PATH ?? '/Endless';
 const output = path.resolve('dist/client');
 const routes = ['/', '/menu/', '/salon/'];
 const server = await startProdServer({ host: '127.0.0.1', port: 0, outDir: path.resolve('dist'), noCompression: true });
@@ -26,9 +26,9 @@ try {
   server.server.closeAllConnections();
   await new Promise((resolve, reject) => server.server.close(error => error ? reject(error) : resolve()));
 }
-// GitHub mounts the artifact at /Endless, so the disk must not repeat it.
-const nestedAssets = path.join(output, 'Endless', '_next');
-if (existsSync(nestedAssets)) {
+// A subpath host mounts the artifact at its prefix; do not repeat it on disk.
+const nestedAssets = path.join(output, prefix, '_next');
+if (prefix && existsSync(nestedAssets)) {
   assert(!existsSync(path.join(output, '_next')), 'Unexpected duplicate asset directories');
   renameSync(nestedAssets, path.join(output, '_next'));
 }

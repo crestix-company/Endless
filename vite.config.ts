@@ -36,7 +36,7 @@ const localBindingConfig = {
 
 export default defineConfig(async () => {
   // Pages serves static files; the existing Sites build retains its Worker.
-  if (process.env.GITHUB_PAGES === 'true') {
+  if (process.env.GITHUB_PAGES === 'true' || process.env.STATIC_EXPORT === 'true') {
     return {
       css: { postcss: { plugins: [tailwindcss()] } },
       plugins: [vinext()],
