@@ -28,8 +28,8 @@ Vinext / React / Cloudflare Workers。Sitesの公開設定は `.openai/hosting.j
 
 ### GitHub Pages
 
-- リポジトリ： https://github.com/Nishitasho/Endless
-- 公開先： https://nishitasho.github.io/Endless/
+- リポジトリ： https://github.com/crestix-company/Endless
+- 公開先： https://crestix-company.github.io/Endless/
 - GitHubのSettings → PagesでSourceを「GitHub Actions」に設定する。
 - `main` へのpushで `.github/workflows/deploy-pages.yml` が起動する。
 - `npm run build:pages` で静的HTMLを生成・検証し、`dist/client` の公開ファイルだけを配信する。Worker出力は配信しない。

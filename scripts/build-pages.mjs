@@ -5,7 +5,7 @@ const env = {
   ...process.env,
   GITHUB_PAGES: 'true',
   NEXT_PUBLIC_BASE_PATH: '/Endless',
-  NEXT_PUBLIC_SITE_URL: 'https://nishitasho.github.io/Endless/',
+  NEXT_PUBLIC_SITE_URL: 'https://crestix-company.github.io/Endless/',
 };
 execFileSync(process.execPath, ['node_modules/vinext/dist/cli.js', 'build'], { env, stdio: 'inherit' });
 execFileSync(process.execPath, ['scripts/export-pages.mjs'], { env, stdio: 'inherit' });

@@ -4,7 +4,7 @@ import path from 'node:path';
 
 const root = path.resolve('dist/client');
 const prefix = '/Endless';
-const origin = 'https://nishitasho.github.io';
+const origin = 'https://crestix-company.github.io';
 const routes = [
   ['/', '髪を整え、'],
   ['/menu/', 'メニュー・料金'],
@@ -39,6 +39,7 @@ for (const [route, marker] of routes) {
   assert.equal((html.match(/<h1[\s>]/g) || []).length, 1, `Expected one h1 at ${route}`);
   assert(html.includes(`href="${url}"`), `Missing canonical at ${route}`);
   assert(!html.includes('s-nishita.chatgpt.site'), `Preview URL leaked into ${route}`);
+  assert(!html.includes('nishitasho.github.io'), `Previous repository URL leaked into ${route}`);
   for (const [, value] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     if (/^(#|https?:|tel:|mailto:|data:)/.test(value)) continue;
     assert(value.startsWith(`${prefix}/`), `Unprefixed link in ${route}: ${value}`);
