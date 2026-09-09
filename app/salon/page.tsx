@@ -20,7 +20,7 @@ export default function SalonPage() {
 
     <section className="section salon-moment" aria-labelledby="moment-heading" data-reveal>
       <div className="moment-copy"><p className="eyebrow">A LITTLE MOMENT AT ENDLESS</p><h2 id="moment-heading">ほっとする、<br/>いつもの場所。</h2><p>髪を切る時間が、少し楽しみになるように。</p><p>いつもの会話を楽しんだり、<br/>何も考えず、ひと息ついたり。<br/>肩の力を抜いて、お過ごしください。</p></div>
-      <figure className="moment-photo"><img src={sitePath('/images/dog-restored.webp')} alt="店内の木の床に立つ、赤と黒の服を着た小さな白い犬" width="971" height="1619" loading="lazy"/><figcaption>お店の、もうひとつの表情。</figcaption></figure>
+      <figure className="moment-photo"><img src={sitePath('/images/dog-20260909.jpg')} alt="木の床の上で、青緑のハーネスを着けてこちらを見上げる小さな犬" width="1108" height="1477" loading="lazy"/><figcaption>お店の、もうひとつの表情。</figcaption></figure>
     </section>
   </SiteShell>;
 }

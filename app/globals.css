@@ -193,7 +193,7 @@ h2 { font-family:var(--font-display); font-size:clamp(28px,3vw,43px); font-weigh
 .moment-copy .eyebrow { color:var(--rust); margin-bottom:22px; }
 .moment-copy>p:not(.eyebrow) { color:var(--muted); font-size:1rem; line-height:2.1; }
 .moment-photo { width:min(100%,340px); margin:0 auto; }
-.moment-photo img { width:100%; height:auto; aspect-ratio:971/1619; }
+.moment-photo img { width:100%; height:auto; aspect-ratio:1108/1477; }
 .moment-photo figcaption { font-size:.875rem; color:var(--muted); margin-top:15px; }
 @media(max-width:740px) { .page-intro { padding-top:25px; padding-bottom:45px; }.breadcrumbs { margin-bottom:30px; }.page-intro h1 { font-size:clamp(28px,7vw,40px); }.page-intro+.menu-section { padding-top:0; }.explore-section { grid-template-columns:1fr; gap:30px; padding-top:5px; }.explore-link { padding-top:28px; }.salon-moment { grid-template-columns:1fr; gap:28px; }.moment-photo { width:min(100%,300px); }.site-header nav a { font-size:.875rem; } }
 @media(min-width:1600px) { .hero { min-height:760px; }.hero-copy { padding-top:90px; } }

@@ -9,7 +9,7 @@ const origin = siteUrl.origin;
 const routes = [
   ['/', '髪を整え、'],
   ['/menu/', 'メニュー・料金'],
-  ['/salon/', 'dog-restored.webp'],
+  ['/salon/', 'dog-20260909.jpg'],
 ];
 function fileFor(urlPath) {
   assert(urlPath.startsWith(`${prefix}/`), `Missing Pages prefix: ${urlPath}`);
@@ -55,7 +55,7 @@ for (const [route, marker] of routes) {
   }
   console.log(`Verified ${prefix + route}: HTML, metadata, navigation and assets`);
 }
-for (const name of ['interior-restored.webp', 'shaving-restored.webp', 'style-restored.webp', 'exterior.webp', 'dog-restored.webp']) {
+for (const name of ['interior-restored.webp', 'shaving-restored.webp', 'style-restored.webp', 'exterior.webp', 'dog-20260909.jpg']) {
   checkFile(path.join(root, 'images', name));
 }
 assert(existsSync(path.join(root, '.nojekyll')), 'Missing .nojekyll');
