@@ -1,9 +1,16 @@
 'use client';
 
 import { useEffect } from 'react';
+import { sitePath } from '@/lib/site';
 
 export function SiteMotion() {
   useEffect(() => {
+    const legacyPages: Record<string, string> = { '#menu': '/menu/#menu', '#access': '/salon/#access' };
+    const legacyPage = legacyPages[window.location.hash];
+    if (legacyPage && window.location.pathname.replace(/\/$/, '') === sitePath('/').replace(/\/$/, '')) {
+      window.location.replace(sitePath(legacyPage));
+      return;
+    }
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const elements = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
     const observer = new IntersectionObserver(entries => {
